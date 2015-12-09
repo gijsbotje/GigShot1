@@ -1,0 +1,45 @@
+<section class="foto-wrapper" style="background: url(<%= @image.image.url %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+</section>
+<section class="foto-big" style="background: url(<%= @image.image.url %>) center center; -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain; background-repeat: no-repeat;">
+</section>
+<section id="foto-info">
+	<div class="foto-titel"><%= @image.title %></div>
+
+	<div class="column small-12 medium-6">
+		<div class="profiel-thumb">
+			<a href="#">
+				<img src="<%= current_user.avatar.url %>" >
+			</a>
+		</div>
+		<div class="foto-omschrijving">
+			<%= @image.desc %>
+		</div>
+		<%= link_to like_image_path(@image),method: :put, class:"button tiny" do %>
+	    <span>
+	      <i class="fi-heart">
+					<%= @image.get_upvotes.size %>
+				</i>
+			</span>
+		<% end %>
+		<% if user_signed_in? %>
+			<%= link_to "Bewerken", edit_image_path, class: "button tiny" %>
+		<% end %>
+	</div>
+<div class="foto-info-data">
+	<div class="profiel-thumb">
+		<a href="bandprofile.php?id=<?php echo $bandID ?>">
+			<img src="<?php echo $bandrow['profielfoto']; ?>" />
+		</a>
+	</div>
+	<?php
+
+		}
+	?>
+	<?php echo $profielID ;?>
+	<?php echo $albumID ;?>
+	<?php echo $showID ;?>
+	<?php echo $username;?>
+
+
+</div>
+</section>

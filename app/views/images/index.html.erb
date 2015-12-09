@@ -1,0 +1,49 @@
+<% if params[:search].nil? %>
+	<section class="wrapper">
+		<article class="banner" style="background: url(<%= @banner.image.url %>) center center  ; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+			<div class="searchbar">
+				<%= form_tag('/', :method => "get") do %>
+			    <%= search_field_tag :search, params[:search], placeholder: "|", autocomplete: "off", spellcheck: "false" %>
+					<input type="submit" value="ZOEK" />
+			  <% end %>
+			</div>
+		</article>
+		<div class="cover-info"><a href="/images/<%= @banner.id %>"> <%= @banner.title %> - <%= @banner.user.email %></a></div>
+	</section>
+	<div class="pagina-titel">Ontdek nieuwe muziek </div>
+	<section class="foto-grid">
+		<% @images.each do |img| %>
+			<a href="/images/<%= img.id %>">
+				<div class="item horizontaal" style="background: url(<%= img.image.url %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+					<div class="foto-data"><%= img.title %></div>
+				</div>
+			</a>
+		<% end %>
+	</section>
+	<% elsif params[:search].empty?%>
+		<section class="wrapper">
+			<article class="banner" style="background: url(<%= @banner.image.url %>) center center  ; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+				<div class="zoek-error-msg">Vul een zoekopdracht in.</div>
+				<div class="searchbar">
+					<%= form_tag('/', :method => "get") do %>
+				    <%= search_field_tag :search, params[:search], placeholder: "|", autocomplete: "off", spellcheck: "false" %>
+						<input type="submit" value="ZOEK" />
+				  <% end %>
+				</div>
+			</article>
+			<div class="cover-info"><a href="/images/<%= @banner.id %>"> <%= @banner.title %> - <%= @banner.user.email %></a></div>
+		</section>
+	<% else %>
+	<section class="album-wrapper">
+		<div class="pagina-titel">Zoekresultaten voor: <%= params[:search] %></div>
+		<% @query.each do |res| %>
+	   <a href="/images/<%= res.id %>">
+			 <div class="item horizontaal" style="background: url(<%= res.image.url(:thumb) %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+				 <div class="foto-data"><%= res.title %></div>
+			 </div>
+		 </a>
+		<% end %>
+	</section>
+
+
+	<% end %>

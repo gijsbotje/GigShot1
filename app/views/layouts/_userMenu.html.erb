@@ -1,0 +1,41 @@
+<nav class="mainNav">
+  <ul>
+    <li>
+      <a href="#">GENRES</a>
+    </li>
+    <li>
+      <a href="/albums">ALBUMS</a>
+    </li>
+    <li>
+      <a href="/images/new">UPLOAD</a>
+    </li>
+    <li>
+      <a href="shows.php">SHOWS</a>
+    </li>
+    <li>
+      <div class="mobile-search-box">
+        <form method="get" action="zoeken.php">
+          <input type="search" class="search" name="zoek" value="" placeholder="ZOEK" autocomplete="off" spellcheck="false"/>
+        </form>
+      </div>
+    </li>
+  </ul>
+</nav>
+<div class="righthead">
+  <%= form_tag('/', :method => "get", id: "search-form") do %>
+    <%= search_field_tag :search, params[:search], placeholder: "ZOEK", autocomplete: "off", class: "search", spellcheck: "false" %>
+  <% end %>
+
+  <label for="show-profile-menu"><image src="<%= @user.avatar.url %>" /></label>
+
+  <input type="checkbox" id="show-profile-menu" role="button"/>
+  <div class="profile-menu">
+    <ul>
+      <li><a href="/profile">Mijn profiel</a></li>
+      <li><a href="albums.php">Mijn albums</a></li>
+      <li><%= link_to "Mijn account", edit_user_registration_path %></li>
+      <li><a href="#">Mijn vrienden</a></li>
+      <li><%= link_to "log uit", destroy_user_session_path %></li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>GigShot - muziek en foto's in harmonie</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag :defaults %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+<div class="site-wrapper">
+  <%= render 'layouts/header' %>
+
+  <% flash.each do |name, msg| %>
+    <div class="alert-box" data-alert="">
+      <%= msg %>
+      <a class="close" href="#">&times;</a>
+    </div>
+  <% end %>
+  <section class="wrapper">
+
+  	<%= yield %>
+
+  </section>
+
+
+  <%= render 'layouts/footer' %>
+</div>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</body>
+</html>

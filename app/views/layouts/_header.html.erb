@@ -1,0 +1,23 @@
+<header id="header">
+  <input type="checkbox" id="toggle-mob-menu" role="button"/>
+  <label for="toggle-mob-menu">
+    <div class="button-mob-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </label>
+
+  <div class="logo">
+    <a href="/">
+      <img src="/images/GIGshotlogo.png"/>
+    </a>
+  </div>
+
+    <% if user_signed_in?%>
+      <%= render partial: 'layouts/userMenu' %>
+    <% else %>
+      <%= render partial: 'layouts/uIUMenu' %>
+    <% end %>
+
+</header>

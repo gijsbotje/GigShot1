@@ -1,0 +1,8 @@
+<div class="upload-wrapper">
+  <div class="pagina-titel">
+    Bewerk afbeelding
+  </div>
+
+  <%= render 'form' %>
+  <%= link_to "verwijderen", image_path, method: :delete, data: { confirm: "Weet je zeker dat je deze afbeelding wil verwijderen?" } %>
+</div>

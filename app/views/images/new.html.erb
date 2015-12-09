@@ -1,0 +1,23 @@
+<div class="upload-wrapper">
+  <div class="pagina-titel">
+    Upload afbeeldingen
+  </div>
+
+  <%= simple_form_for @image, html: {multipart: true} do |f| %>
+  <% if @image.errors.any? %>
+    <div id="errors">
+      <h2>
+        <%= pluralize(@image.errors.count, "error") %>
+        prevented this image from saving
+        <ul>
+          <% @image.errors.full_message.each do |msg| %>
+            <li><%= msg %> </li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+  <%= file_field_tag "images[]", type: :file, multiple: true %>
+  <%= f.button :submit, class: "button" %>
+  <% end %>
+
+</div>
