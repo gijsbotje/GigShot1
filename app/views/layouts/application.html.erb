@@ -14,9 +14,11 @@
   <%= render 'layouts/header' %>
 
   <% flash.each do |name, msg| %>
+		<input type="checkbox" name="close-<%= name %>" id="close-<%= name %>" class="alert-checkbox">
     <div class="alert-box" data-alert="">
       <%= msg %>
-      <a class="close" href="#">&times;</a>
+      <label for="close-<%= name %>" class="close">&times;</label>
+
     </div>
   <% end %>
   <section class="wrapper">

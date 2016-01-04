@@ -1,5 +1,4 @@
-<div class="row">
-  <%= simple_form_for @image, html: {multipart: true} do |f| %>
+<%= simple_form_for @image, html: {multipart: true} do |f| %>
   <% if @image.errors.any? %>
     <div id="errors">
       <h2>
@@ -12,9 +11,25 @@
         </ul>
     </div>
   <% end %>
-  <%= f.input :image %>
-  <%= f.input :title %>
-  <%= f.input :desc %>
+  <table>
+    <tr>
+      <td>
+        <%= f.label :title, "Titel" %>
+      </td>
+      <td>
+        <%= f.text_field :title %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :desc, "Beschrijving" %>
+      </td>
+      <td>
+        <%= f.text_area :desc %>
+      </td>
+    </tr>
+  </table>
+
+
   <%= f.button :submit, class: "button" %>
-  <% end %>
-</div>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="album-wrapper">
+  <div class="pagina-titel">
+    Jouw albums
+  </div>
+  <% if user_signed_in? %>
+    <div class="album-nav">
+  		<ul>
+  			<li>
+      			<%= link_to "Toevoegen", new_album_path %>
+        </li>
+  		</ul>
+  	</div>
+  <% end %>
+	<div class="album-container">
+    <% @albums.each do |item| %>
+			<a href="/albums/<%= item.id %>">
+  			<div class="album-row">
+          <% item.images.first(5).each do |thumb| %>
+  				<div class="albumimg">
+  					<img src="<%= thumb.image.url(:thumb) %>">
+  				</div>
+          <% end %>
+  				<div class="album-row-titel">
+  					<%= item.album_title %> <br>
+  					<span><%= item.images.count %> foto's</span>
+  				</div>
+
+  			</div>
+  		</a>
+		<% end %>
+  </div>
+</div>

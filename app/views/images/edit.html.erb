@@ -2,7 +2,23 @@
   <div class="pagina-titel">
     Bewerk afbeelding
   </div>
+  <div class="row collapse">
+    <div class="column small-12 medium-6">
+      <div class="form-block">
+        <%= render 'form' %>
+        <a href="#openModal" class="link delete">Verwijderen</a>
+      </div>
+    </div>
+    <div class="column small-12 medium-6">
+      <%= image_tag @image.image.url(:thumb) %>
+    </div>
+  </div>
 
-  <%= render 'form' %>
-  <%= link_to "verwijderen", image_path, method: :delete, data: { confirm: "Weet je zeker dat je deze afbeelding wil verwijderen?" } %>
+  <div id="openModal" class="modalDialog">
+    <div>
+      <h1>Weet je zeker dat je deze afbeelding wil verwijderen?</h1>
+    	<%= link_to "Ik weet het zeker", image_path, method: :delete, class: "button delete" %>
+      <a href="#close" title="Close" class="button">annuleren</a>
+    </div>
+  </div>
 </div>

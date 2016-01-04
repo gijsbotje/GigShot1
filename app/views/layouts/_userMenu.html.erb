@@ -14,9 +14,9 @@
     </li>
     <li>
       <div class="mobile-search-box">
-        <form method="get" action="zoeken.php">
-          <input type="search" class="search" name="zoek" value="" placeholder="ZOEK" autocomplete="off" spellcheck="false"/>
-        </form>
+        <%= form_tag('/', :method => "get") do %>
+          <%= search_field_tag :search, params[:search], placeholder: "ZOEK", autocomplete: "off", class: "search", spellcheck: "false" %>
+        <% end %>
       </div>
     </li>
   </ul>
@@ -26,12 +26,12 @@
     <%= search_field_tag :search, params[:search], placeholder: "ZOEK", autocomplete: "off", class: "search", spellcheck: "false" %>
   <% end %>
 
-  <label for="show-profile-menu"><image src="<%= @user.avatar.url %>" /></label>
+  <label for="show-profile-menu"><image src="<%= @user.avatar.url(:thumb) %>" /></label>
 
   <input type="checkbox" id="show-profile-menu" role="button"/>
   <div class="profile-menu">
     <ul>
-      <li><a href="/profile">Mijn profiel</a></li>
+      <li><a href="/users/<%= current_user.id %>">Mijn profiel</a></li>
       <li><a href="albums.php">Mijn albums</a></li>
       <li><%= link_to "Mijn account", edit_user_registration_path %></li>
       <li><a href="#">Mijn vrienden</a></li>

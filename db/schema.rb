@@ -11,11 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208121305) do
+ActiveRecord::Schema.define(version: 20151220155357) do
 
   create_table "albums", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.string   "album_title"
+    t.string   "album_desc"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "images", force: :cascade do |t|
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20151208121305) do
     t.integer  "band_id"
     t.text     "title"
     t.text     "desc"
-    t.date     "picDate"
+    t.datetime "picDate"
     t.string   "likes"
     t.text     "tags"
     t.string   "eShutter"
@@ -61,6 +64,10 @@ ActiveRecord::Schema.define(version: 20151208121305) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

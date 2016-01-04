@@ -1,1 +1,18 @@
-<%= @user.username %>
+<div class="profile-wrapper">
+  <div class="profile-banner" style="background: url(<%= @user.banner.url %>) center center; background-size: cover;">
+
+  </div>
+  <div class="profile-container">
+    <div id="Avatar">
+      <%= image_tag @user.avatar.url %>
+    </div>
+    <div class="profile-container-inner">
+
+        <div class="pagina-titel">
+          <%= @user.username %><br />
+        </div>
+
+    </div>
+  </div>
+
+</div>

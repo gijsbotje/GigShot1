@@ -14,7 +14,7 @@
 	<section class="foto-grid">
 		<% @images.each do |img| %>
 			<a href="/images/<%= img.id %>">
-				<div class="item horizontaal" style="background: url(<%= img.image.url %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+				<div class="item horizontaal" style="background: url(<%= img.image.url(:thumb) %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
 					<div class="foto-data"><%= img.title %></div>
 				</div>
 			</a>

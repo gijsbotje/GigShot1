@@ -1,0 +1,35 @@
+<div class="upload-wrapper">
+  <div class="pagina-titel">
+    bewerk Album: <%= @album.album_title %>
+  </div>
+  <%= simple_form_for @album, html: {multipart: true} do |f| %>
+  <% if @album.errors.any? %>
+    <div id="errors">
+      <h2>
+        <%= pluralize(@album.errors.count, "error") %>
+        prevented this image from saving
+        <ul>
+          <% @album.errors.full_message.each do |msg| %>
+            <li><%= msg %> </li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+    <div class="control-group">
+      <%= f.label :album_title, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :album_title, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :album_desc, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :album_desc, :class => 'text_field' %>
+      </div>
+    </div>
+
+  <%= f.button :submit, class: "button" %>
+  <% end %>
+
+</div>

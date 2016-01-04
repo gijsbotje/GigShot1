@@ -6,12 +6,18 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :user_info
 
+
+  private
+  def after_sign_out_path_for(resource_or_scope)
+    "/users/sign_in"
+  end
+
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :avatar) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :current_password, :avatar) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :current_password, :avatar, :banner) }
   end
 
   def user_info

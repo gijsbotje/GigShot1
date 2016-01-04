@@ -26,7 +26,7 @@
       </tr>
   		<tr>
         <td>
-          <%= f.email_field :username %>
+          <%= f.text_field :username %>
         </td>
       </tr>
       <tr>
@@ -70,9 +70,16 @@
           <%= f.submit "SIGN UP" %>
         </td>
       </tr>
-    </table>
     <% end %>
-
-    <%= render "devise/shared/links" %>
+	    <tr class="forgot-links">
+				<td>
+					<table>
+						<tr>
+							<%= render "devise/shared/links" %>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
   </div>
 </div>

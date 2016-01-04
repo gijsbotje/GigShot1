@@ -8,7 +8,7 @@ class CreateImages < ActiveRecord::Migration
       t.integer :band_id
       t.text :title
       t.text :desc
-      t.date :picDate
+      t.datetime :picDate
       t.string :likes
       t.text :tags
       t.string :eShutter

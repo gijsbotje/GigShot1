@@ -4,42 +4,52 @@
 </section>
 <section id="foto-info">
 	<div class="foto-titel"><%= @image.title %></div>
+	<div class="row collapse expanded">
+		<div class="column small-12 medium-6">
+			<div class="row collapse">
+				<div class="column medium-4">
+					<div class="profiel-thumb">
+						<a href="/user/<%= @image.user_id %>">
+							<img src="<%= @image.user.avatar.url(:medium) %>" >
+						</a>
+					</div>
+				</div>
+				<div class="column medium-8">
+					<div class="foto-omschrijving">
+						<p><%= @image.desc %></p>
 
-	<div class="column small-12 medium-6">
-		<div class="profiel-thumb">
-			<a href="#">
-				<img src="<%= current_user.avatar.url %>" >
-			</a>
+					<% if user_signed_in? %>
+						<%= link_to like_image_path(@image),method: :put, class:"button tiny" do %>
+					    <span>
+					      <i class="fi-heart">
+									<%= @image.get_upvotes.size %>
+								</i>
+							</span>
+						<% end %>
+						<% if @image.user == current_user %>
+							<%= link_to "Bewerken", edit_image_path, class: "button tiny" %>
+						<% end %>
+					<% end %>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="foto-omschrijving">
-			<%= @image.desc %>
+		<div class="column small-12 medium-6">
+			<div class="profiel-thumb">
+				<a href="bandprofile.php?id=<?php echo $bandID ?>">
+					<img src="<?php echo $bandrow['profielfoto']; ?>" />
+				</a>
+			</div>
+			<?php
+
+				}
+			?>
+			<?php echo $profielID ;?>
+			<?php echo $albumID ;?>
+			<?php echo $showID ;?>
+			<?php echo $username;?>
+
+
 		</div>
-		<%= link_to like_image_path(@image),method: :put, class:"button tiny" do %>
-	    <span>
-	      <i class="fi-heart">
-					<%= @image.get_upvotes.size %>
-				</i>
-			</span>
-		<% end %>
-		<% if user_signed_in? %>
-			<%= link_to "Bewerken", edit_image_path, class: "button tiny" %>
-		<% end %>
 	</div>
-<div class="foto-info-data">
-	<div class="profiel-thumb">
-		<a href="bandprofile.php?id=<?php echo $bandID ?>">
-			<img src="<?php echo $bandrow['profielfoto']; ?>" />
-		</a>
-	</div>
-	<?php
-
-		}
-	?>
-	<?php echo $profielID ;?>
-	<?php echo $albumID ;?>
-	<?php echo $showID ;?>
-	<?php echo $username;?>
-
-
-</div>
 </section>
