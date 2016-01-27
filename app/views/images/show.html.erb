@@ -1,6 +1,6 @@
-<section class="foto-wrapper" style="background: url(<%= @image.image.url %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+<section class="foto-wrapper" style="background: url(<%= @image.image.url(:medium) %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
 </section>
-<section class="foto-big" style="background: url(<%= @image.image.url %>) center center; -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain; background-repeat: no-repeat;">
+<section class="foto-big" style="background: url(<%= @image.image.url(:large) %>) center center; -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain; background-repeat: no-repeat;">
 </section>
 <section id="foto-info">
 	<div class="foto-titel"><%= @image.title %></div>
@@ -19,13 +19,13 @@
 						<p><%= @image.desc %></p>
 
 					<% if user_signed_in? %>
-						<%= link_to like_image_path(@image),method: :put, class:"button tiny" do %>
+			      <%= link_to like_image_path(@image),method: :put, class:"button tiny" do %>
 					    <span>
-					      <i class="fi-heart">
+					      <i class="fa-heart">
 									<%= @image.get_upvotes.size %>
-								</i>
-							</span>
-						<% end %>
+  								</i>
+  							</span>
+			      <% end %>
 						<% if @image.user == current_user %>
 							<%= link_to "Bewerken", edit_image_path, class: "button tiny" %>
 						<% end %>

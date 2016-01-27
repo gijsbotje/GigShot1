@@ -610,7 +610,16 @@ input[type="submit"]:hover {
 
 }
 
-
+.user-thumb {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  opacity: .9;
+}
+.user-thumb:hover{
+  opacity: 1;
+}
 
 
 /* fotodetail pagina */
@@ -769,25 +778,17 @@ footer a:hover {color: #ccc;}
 
 /* Styling profile page */
 .profile-wrapper{
-	top:0px;
-	width: 100vw;
-	z-index:0;
-	perspective: 1px;
-	height: 100vh;
-	overflow-x: hidden;
-	overflow-y: auto;
+
 }
 
 .profile-banner{
 	height: 50vh;
 	background: url(http://images3.alphacoders.com/266/266779.jpg) center center no-repeat;
 	background-size: cover;
-	position: absolute;
-	top: -30vh;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	transform: translateZ(-1px) scale(2);
+  position: relative;
 }
 
 section#profile {
@@ -801,35 +802,48 @@ section#profile {
 	background: #000;
 	padding: 15px 0px;
 	margin: 0px auto;
-	display: table;
-	position: absolute;
-	top: 40vh;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	transform: translateZ(0);
+  position: relative;
+}
+.profile-banner::after{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.90) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.90) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.90) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
 }
 .profile-container-inner{
-	width: calc(100% - 25vw);
-	float:left;
-	background: rgba(120,120,120,.5);
-	margin-left: 4vw;
 	top: 0px;
 	position: relative;
 }
 
+.profile-info{
+  margin-top: -90px;
+}
+.profile-info h1{
+  color: #fff;
+  font-weight: 600;
+  font-size: 3em;
+  margin: 0px;
+}
+
 div#Avatar {
-	width: 15vw;
-	height: 15vw;
+	width: 200px;
+	height: 200px;
 	border-radius: 50%;
+  margin-right: 50px;
+  margin-top: -40px;
 	overflow: hidden;
 	float: left;
-	position: relative;
 	z-index: 100;
-
-	top: -100px;
-	left: 25px;
+  box-shadow: 0px 0px 10px #333;
+  border: 1px solid transparent;
 }
+
 .edit-prof-img{
 	position: relative;
 	width: 100%;
@@ -1175,6 +1189,10 @@ div.fotos-selector {
 .profiel-thumb .prof-thumb-name:hover {
 	opacity: 1;
 }
+
+.thumb-image{
+  width: 8vw;
+}
 /* error styling */
 
 @media (max-width: 48em) {
@@ -1377,8 +1395,8 @@ div.fotos-selector {
 		width: 90vw;
 		background: rgba(0,0,0,.7);
 		top: 30vh;
-		left: 50vw;
-		margin-left: -45vw;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.searchbar input[type="search"] {
@@ -1431,8 +1449,8 @@ div.fotos-selector {
 
 	/* Styling profile page */
 	div#Avatar {
-		width: 60vw!important;
-		height: 60vw!important;
+		width: 20vw!important;
+		height: 20vw!important;
 		border-radius: 50%;
 		-webkit-background-size: 100%;
 		-moz-background-size: 100%;
@@ -1440,9 +1458,15 @@ div.fotos-selector {
 		background-size: 100%;
 		overflow: hidden;
 		position: absolute;
-		top: 60px;
-		left: 20vw!important;
+		top: -20vw;
+		left: 50%!important;
+    margin-top: -75px;
+    transform: translateX(-50%);
 	}
+
+  .profile-info{
+    text-align: center;
+  }
 
 	table.profile{
 		width: 20vw;
@@ -1587,7 +1611,9 @@ div.fotos-selector {
   width: 100%;
   float: left;
   padding-left: 0.9375rem;
-  padding-right: 0.9375rem; }
+  padding-right: 0.9375rem;
+  box-sizing: border-box;
+}
   .column:last-child:not(:first-child), .columns:last-child:not(:first-child) {
     float: right; }
   .column.end:last-child:last-child, .end.columns:last-child:last-child {

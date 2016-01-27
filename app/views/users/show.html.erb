@@ -3,16 +3,52 @@
 
   </div>
   <div class="profile-container">
-    <div id="Avatar">
-      <%= image_tag @user.avatar.url %>
-    </div>
-    <div class="profile-container-inner">
-
-        <div class="pagina-titel">
-          <%= @user.username %><br />
+    <div class="row profile-info">
+      <div class="column medium-12">
+        <div id="Avatar">
+          <%= image_tag @user.avatar.url %>
         </div>
+        <h1>
+          <%= @user.username %>
+        </h1>
+      </div>
+    </div>
+      <div class="pagina-titel">
+        Fotos
+      </div>
+      <div class="foto-grid">
+        <% @pictures.each do |pic| %>
+          <a href="/images/<%= pic.id %>">
+            <div class="item horizontaal" style="background: url(<%= pic.image.url(:thumb) %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+              <div class="foto-data"><%= pic.title %></div>
+            </div>
+          </a>
+        <% end %>
+      </div>
+    <div class="clearer">
+
+    </div>
+      <div class="pagina-titel">
+        Albums
+      </div>
+      <div class="album-grid">
+        <% @albums.each do |item| %>
+          <a href="/albums/<%= item.id %>">
+            <div class="album-row">
+              <% item.images.first(5).each do |thumb| %>
+              <div class="albumimg">
+                <img src="<%= thumb.image.url(:thumb) %>">
+              </div>
+              <% end %>
+              <div class="album-row-titel">
+                <%= item.album_title %> <br>
+                <span><%= item.images.count %> foto's</span>
+              </div>
+
+            </div>
+          </a>
+        <% end %>
+      </div>
 
     </div>
   </div>
-
-</div>

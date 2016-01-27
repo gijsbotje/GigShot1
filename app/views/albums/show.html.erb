@@ -8,7 +8,7 @@
       			<%= link_to "Bewerken", edit_album_path %>
         </li>
   			<li>
-          <%= link_to "Verwijderen", album_path, method: :delete, data: { confirm: "Weet je zeker dat je deze afbeelding wil verwijderen?" } %>
+					<a href="#openModal" class="link delete">Verwijderen</a>
         </li>
   		</ul>
   	</div>
@@ -23,5 +23,12 @@
     		</a>
       <% end %>
   	</div>
+  </div>
+	<div id="openModal" class="modalDialog">
+    <div>
+      <h1>Weet je zeker dat je deze afbeelding wil verwijderen?</h1>
+      <%= link_to "Verwijderen", album_path, method: :delete %>
+      <a href="#close" title="Close" class="button">annuleren</a>
+    </div>
   </div>
 </div>

@@ -20,22 +20,39 @@
 			</a>
 		<% end %>
 	</section>
-	<% elsif params[:search].empty?%>
-		<section class="wrapper">
-			<article class="banner" style="background: url(<%= @banner.image.url %>) center center  ; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
-				<div class="zoek-error-msg">Vul een zoekopdracht in.</div>
-				<div class="searchbar">
-					<%= form_tag('/', :method => "get") do %>
-				    <%= search_field_tag :search, params[:search], placeholder: "|", autocomplete: "off", spellcheck: "false" %>
-						<input type="submit" value="ZOEK" />
-				  <% end %>
-				</div>
-			</article>
-			<div class="cover-info"><a href="/images/<%= @banner.id %>"> <%= @banner.title %> - <%= @banner.user.email %></a></div>
-		</section>
-	<% else %>
+<% elsif params[:search].empty?%>
+	<section class="wrapper">
+		<article class="banner" style="background: url(<%= @banner.image.url %>) center center  ; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
+			<div class="zoek-error-msg">Vul een zoekopdracht in.</div>
+			<div class="searchbar">
+				<%= form_tag('/', :method => "get") do %>
+			    <%= search_field_tag :search, params[:search], placeholder: "|", autocomplete: "off", spellcheck: "false" %>
+					<input type="submit" value="ZOEK" />
+			  <% end %>
+			</div>
+		</article>
+		<div class="cover-info"><a href="/images/<%= @banner.id %>"> <%= @banner.title %> - <%= @banner.user.email %></a></div>
+	</section>
+<% else %>
 	<section class="album-wrapper">
 		<div class="pagina-titel">Zoekresultaten voor: <%= params[:search] %></div>
+		<div class="pagina-titel">
+			gebruikers
+		</div>
+		<% @users.each do |usr| %>
+	   <a href="/user/<%= usr.id %>">
+			 <div class="profiel-thumb">
+				 	<img src="<%= usr.avatar.url(:thumb) %>" alt="" />
+				 <div class="prof-thumb-name">
+				 		<%= usr.username %>
+				 </div>
+			 </div>
+		 </a>
+		<% end %>
+		<div class="clearer"> </div>
+		<div class="pagina-titel">
+			Foto's
+		</div>
 		<% @query.each do |res| %>
 	   <a href="/images/<%= res.id %>">
 			 <div class="item horizontaal" style="background: url(<%= res.image.url(:thumb) %>) center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat;">
@@ -43,7 +60,27 @@
 			 </div>
 		 </a>
 		<% end %>
+		<div class="clearer"> </div>
+		<div class="pagina-titel">
+			Foto's
+		</div>
+		<% @albums.each do |item| %>
+			<a href="/albums/<%= item.id %>">
+  			<div class="album-row">
+          <% item.images.first(5).each do |thumb| %>
+  				<div class="albumimg">
+  					<img src="<%= thumb.image.url(:thumb) %>">
+  				</div>
+          <% end %>
+  				<div class="album-row-titel">
+  					<%= item.album_title %> <br>
+  					<span><%= item.images.count %> foto's</span>
+  				</div>
+
+  			</div>
+  		</a>
+		<% end %>
 	</section>
 
 
-	<% end %>
+<% end %>

@@ -1,16 +1,13 @@
 <nav class="mainNav">
   <ul>
     <li>
-      <a href="#">GENRES</a>
-    </li>
-    <li>
-      <a href="/albums">ALBUMS</a>
-    </li>
-    <li>
       <a href="/images/new">UPLOAD</a>
     </li>
     <li>
-      <a href="shows.php">SHOWS</a>
+      <a href="/albums">MIJN ALBUMS</a>
+    </li>
+    <li>
+      <a href="/user/<%= current_user.id %>">MIJN PROFIEL</a>
     </li>
     <li>
       <div class="mobile-search-box">
@@ -31,10 +28,7 @@
   <input type="checkbox" id="show-profile-menu" role="button"/>
   <div class="profile-menu">
     <ul>
-      <li><a href="/users/<%= current_user.id %>">Mijn profiel</a></li>
-      <li><a href="albums.php">Mijn albums</a></li>
       <li><%= link_to "Mijn account", edit_user_registration_path %></li>
-      <li><a href="#">Mijn vrienden</a></li>
       <li><%= link_to "log uit", destroy_user_session_path %></li>
     </ul>
   </div>

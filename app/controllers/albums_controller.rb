@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album  = Album.find(params[:id])
+    @album  = find_album
     @pictures = @album.images
   end
 
@@ -49,6 +49,10 @@ class AlbumsController < ApplicationController
       redirect_to album_path, notice: "U heeft geen rechten om dit album te verwijderen."
     else
       @album.destroy
+      @pictures = @album.images
+      @pictures.each do |pic|
+        pic.destroy
+      end
       redirect_to root_path, notice: "Het album is succesvol verwijderd."
     end
   end

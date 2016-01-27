@@ -6,9 +6,10 @@ class ImagesController < ApplicationController
     @images = Image.all.order("created_at DESC LIMIT 12")
     @banner = Image.order_by_rand.first
     @query = Image.search(params[:search])
+    searchparams
   end
   def show
-
+    find_image
   end
   def new
     @image = current_user.images.build
@@ -49,11 +50,21 @@ class ImagesController < ApplicationController
     @image.upvote_by current_user
     redirect_to :back
   end
+  def downvote
+    @image.downvote_by current_user
+    redirect_to :back
+  end
   private
   def image_params
     params.require(:image).permit(:user_id, :title, :desc, :image)
   end
   def find_image
     @image = Image.find(params[:id])
+  end
+  def searchparams
+    @search = params[:search].to_s
+    @params = '%'+ @search +'%'
+    @users = User.all.where("username LIKE ?", @params).order("created_at DESC LIMIT 12")
+    @albums = Album.all.where("album_title LIKE ?", @params).order("created_at DESC LIMIT 3")
   end
 end
